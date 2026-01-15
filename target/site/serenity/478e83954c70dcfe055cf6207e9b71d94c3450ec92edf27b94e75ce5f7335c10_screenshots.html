@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Screenshots</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="bootstrap-icons/bootstrap-icons.css">
+<!-- JQuery -->
+<script type="text/javascript" src="scripts/jquery-3.7.1.min.js"></script><!-- Required Stylesheets -->
+<link href="bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+<!-- Required Javascript -->
+<script src="bootstrap-treeview/dist/bootstrap-treeview.min.js"></script><!-- DataTables -->
+<link type="text/css" href="datatables/2.3.1/datatables.min.css" rel="stylesheet" />
+<script type="text/javascript" src="datatables/2.3.1/datatables.min.js"></script>
+<script type="text/javascript" src="datatables/2.3.1/time-elapsed-dhms.js"></script>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+
+<script>
+    jQuery.fn.dataTable.ext.type.order['time-elapsed-dhms-pre'] = function(data) {
+
+        var matches = data.match(/^(\d+(?:\.\d+)?)\s*([a-z]+)/i);
+        var multipliers = {
+            ms: 1,
+            s: 1000,
+            m: 60000,
+            h: 3600000,
+            d: 86400000
+        };
+
+        if (matches) {
+            var multiplier = multipliers[matches[2].toLowerCase()];
+            return parseFloat(matches[1]) * multiplier;
+        } else {
+            return -1;
+        };
+    };
+</script>
+<link rel="stylesheet" href="css/core.css"/>
+<link rel="stylesheet" href="css/link.css"/>
+<link type="text/css" media="screen" href="css/screen.css" rel="Stylesheet"/>
+<!--CHART.JS-->
+<script src="chartjs/chart.js"></script>
+<script src="chartjs/chartjs-plugin-datalabels@2.0.0.min.js"></script>
+<script src="chartjs/patternomaly.min.js"></script>
+<script>
+    // Register the plugin to all charts:
+    Chart.register(ChartDataLabels);
+</script>
+
+    <!-- Swiper.js local styles and script -->
+    <link rel="stylesheet" href="swiper/swiper-bundle.min.css" />
+    <script src="swiper/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const startIndex = parseInt(urlParams.get("screenshot")) || 0;
+
+            new Swiper('.swiper', {
+                initialSlide: startIndex,
+                effect: 'fade',
+                speed: 200,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + (index + 1) + "</span>";
+                    },
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                },
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: true
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .swiper {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swiper-pagination-bullet {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            color: #000;
+            opacity: 1;
+            background: lightgrey;
+        }
+
+        .swiper-pagination-bullet-active {
+            color: #fff;
+            background: #007aff;
+        }
+    </style>
+</head>
+
+<body>
+<div id="topheader">
+    <div id="topbanner">
+        <div id="logo"><a href="index.html"><img src="images/serenity-logo.png" border="0"/></a></div>
+        <div id="projectname-banner" style="float:right">
+            <span class="projectname">
+                <span class="projecttitle">Serenity BDD Report</span>
+                <span class="projectsubtitle"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="middlecontent">
+    <div id="contenttop">
+        <div class="middlebg">
+            <span class="breadcrumbs">
+                <a href="index.html">Home</a>
+                > <span class="truncate-40"><a
+                    href="abc80338b75c6ea5e0f0f3a5aa2df54a93363fa0fbb17200415067c744998a1f.html">A&ntilde;adir-Transaccion</a></span>
+                > <span class="truncate-60"><a
+                    href="478e83954c70dcfe055cf6207e9b71d94c3450ec92edf27b94e75ce5f7335c10.html">Correcta creacion y guardado de transaccion </a></span>
+                > Screenshots
+            </span>
+        </div>
+        <div class="rightbg"></div>
+    </div>
+
+    <div class="clr"></div>
+
+    <!--/* starts second table*/-->
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#"><i class="bi bi-journal-check"></i> Overall Test Results</a>
+        </li>
+        <li >
+            <a href="capabilities.html"><i class="bi bi-journal-text"></i> Requirements</a>
+        </li>
+        <li >
+            <a href="576946480b52ad056d6f5bddf874399c83582ecf90963cc074a14c70580e7d9f.html"><i class="bi bi-chat-text"></i> Features</a>
+        </li>
+    </ul>
+    <span class="date-and-time"><a href="build-info.html"><i class="bi bi-info-circle"></i></a> Report generated 13-01-2026 12:24</span>
+    <br style="clear:left"/>
+</div>
+
+    <div class="clr"></div>
+
+
+    <div id="contentbody">
+        <div class="titlebar">
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td>
+                            <div>
+                                <h3 class="discreet-story-header">
+                                    <i class="fs-2 bi bi-chat-left-quote large-icon"></i>
+                                    <span class="story-header-title">Añadir Transacción </span>
+                                    <span class="badge tag-badge" style="">Feature</span>
+                                </h3>
+
+                                <div class="discreet-requirement-narrative-title">
+                                
+                                </div>
+                            </div>
+
+                        </td>
+                        <td valign="top" align="right">
+                            <p class="tag">
+                                <span class="badge tag-badge" style="background:default;"
+                                    <i class="bi bi-tag-fill"></i>&nbsp;<a class="tagLink" style="background:default;" href="34658a1663fcf042bd7acb3325affbe4e647c8acd84d0228be2f52e1381e61b9.html">10 To 30 Seconds
+                                        (Duration)
+                                </a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="story-title">
+                <table class="outcome-header">
+                    <tr>
+                        <td colspan="2" class="test-title-bar">
+                            <span class="outcome-icon"><a href='##beforetable'><i class='bi bi-check-circle-fill success-icon fa-2x' title='SUCCESS'></i></a></span>
+                            <span class="test-case-title">
+                                <span class="success-color">Correcta creacion y guardado de transaccion
+                                    <span class="related-issue-title"></span>
+                                </span>
+                            </span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="clr"></div>
+
+
+    <div id="beforetable"></div>
+    <div id="contenttilttle">
+    <!-- Swiper Carousel -->
+    <div class="swiper">
+        <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="8734e2de8e852073630020cb53751ce52234ddd74a535052905c2e3e1e13f867.png" title=" Given que el usuario est&aacute; logueado y en la pagina de transacciones
+| user | pass |" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="8734e2de8e852073630020cb53751ce52234ddd74a535052905c2e3e1e13f867.png" title=" usuario enters 'user' into Nombre de usuario" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="5ece447dcb26bfa8ccddbb98fb67eab5d5c25ba8b3436724b5573b2af1a6c75c.png" title=" usuario enters 'user' into Nombre de usuario (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="5ece447dcb26bfa8ccddbb98fb67eab5d5c25ba8b3436724b5573b2af1a6c75c.png" title=" usuario enters 'pass' into password" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="9ac3fad4014771fd7af945160c727e21a2dfdffb7e10b0684df3722b17e4aa71.png" title=" usuario enters 'pass' into password (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="9ac3fad4014771fd7af945160c727e21a2dfdffb7e10b0684df3722b17e4aa71.png" title=" usuario clicks on iniciar sesion" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="742b7ba1bba670f0ebee1966755e9156e39875ad3eced2d5943daedcbf69f421.png" title=" usuario clicks on iniciar sesion (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="742b7ba1bba670f0ebee1966755e9156e39875ad3eced2d5943daedcbf69f421.png" title=" Given que el usuario est&aacute; logueado y en la pagina de transacciones
+| user | pass | (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="fecd6a5612b3a8288395de07c02465900193caf54d34003361eb51a2300127ff.png" title=" When da clic en el boton A&ntilde;adir transacci&oacute;n" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="fecd6a5612b3a8288395de07c02465900193caf54d34003361eb51a2300127ff.png" title=" usuario clicks on A&ntilde;adir Transaccion" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="fecd6a5612b3a8288395de07c02465900193caf54d34003361eb51a2300127ff.png" title=" When da clic en el boton A&ntilde;adir transacci&oacute;n (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="5ccad771edcc0d3f6ea7ce6ff7ee28e72f523ce429f895c62182e56ed042bbe8.png" title=" And llena la informaci&oacute;n correctamente
+| &quot;12-07-2026&quot; | 25000 | example |" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="5ccad771edcc0d3f6ea7ce6ff7ee28e72f523ce429f895c62182e56ed042bbe8.png" title=" Usuario a&ntilde;adir transaccion task" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="5ccad771edcc0d3f6ea7ce6ff7ee28e72f523ce429f895c62182e56ed042bbe8.png" title=" usuario enters '&quot;12-07-2026&quot;' into Fecha" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="a407e485b85322f01b4325f3de52205928eea69dd76751479e7c10ef106b1831.png" title=" usuario enters '&quot;12-07-2026&quot;' into Fecha (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="a407e485b85322f01b4325f3de52205928eea69dd76751479e7c10ef106b1831.png" title=" usuario enters '25000' into Monto" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="1b5f08d65534c0d71163f641b0fc9748dccc1157fe2c7bab3150da3272556eee.png" title=" usuario enters '25000' into Monto (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="1b5f08d65534c0d71163f641b0fc9748dccc1157fe2c7bab3150da3272556eee.png" title=" usuario enters 'example' into Descripci&oacute;n" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="c3ebd07d4e0fb4a680cefc2a7a0f36d9a174667eadc4f07922efee3d5a8709ae.png" title=" usuario enters 'example' into Descripci&oacute;n (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="c3ebd07d4e0fb4a680cefc2a7a0f36d9a174667eadc4f07922efee3d5a8709ae.png" title=" usuario clicks on Guardar" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="7f4c271eb41705946ef8344c2dc0d6a02abb0ad8c8162c70260d011b87fe8a78.png" title=" usuario clicks on Guardar (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="7f4c271eb41705946ef8344c2dc0d6a02abb0ad8c8162c70260d011b87fe8a78.png" title=" Usuario a&ntilde;adir transaccion task (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="3498e7a3b7df38725b545a888d5d23a807c9d693bdf94933fb6f1402b711cbfa.png" title=" And llena la informaci&oacute;n correctamente
+| &quot;12-07-2026&quot; | 25000 | example | (completed)" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="b089039d7f16e91423fadfb7732707cd9817a5851c07401259f981c8089c0d50.png" title=" Then se debe almacenar correctamente la transaccion" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="b089039d7f16e91423fadfb7732707cd9817a5851c07401259f981c8089c0d50.png" title=" Usuario check new transaction was added" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="b089039d7f16e91423fadfb7732707cd9817a5851c07401259f981c8089c0d50.png" title=" usuario should see By.xpath: //tbody[@id='transactions-list'] with text value that contains: &lt;[example]&gt;" width="0" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="b089039d7f16e91423fadfb7732707cd9817a5851c07401259f981c8089c0d50.png" title=" Then se debe almacenar correctamente la transaccion (completed): <span class='success-color'>SUCCESS</span>" width="0" />
+                </div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<div id="beforefooter"></div>
+<div id="bottomfooter">
+    <span class="version">Serenity BDD version 4.3.2</span>
+</div>
+</body>
+</html>

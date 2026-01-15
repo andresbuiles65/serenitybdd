@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+    // Plugin oficial moderno de Serenity para Gradle
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.3.2'
+}
+
+group = 'co.com.automation'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    // Mantén todas las libs de Serenity en la misma versión
+    serenityVersion = '4.3.2'
+    junit4Version   = '4.13.2'
+    lombokVersion   = '1.18.32'
+}
+
+java {
+    // Serenity 4 requiere mínimo Java 11; 17 es una buena opción
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+
+    // ===== Serenity + Cucumber + Screenplay (JUnit 4) =====
+    testImplementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-junit:${serenityVersion}"        // Runner JUnit4 (SerenityRunner, CucumberWithSerenity)
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"     // Cucumber + Serenity
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
+
+    // ===== JUnit 4 explícito (por claridad) =====
+    testImplementation "junit:junit:${junit4Version}"
+
+    // ===== WebDriverManager para drivers de navegador =====
+    testImplementation "io.github.bonigarcia:webdrivermanager:5.9.2"
+
+    // ===== Lombok (opcional, si lo usas) =====
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // ===== Utilidades opcionales =====
+    testImplementation "com.github.javafaker:javafaker:1.0.2"          // Datos fake
+    testImplementation "ch.qos.logback:logback-classic:1.4.14"         // Logging
+}
+
+test {
+    // Para JUnit 4 (CucumberWithSerenity) NO pongas useJUnitPlatform()
+    systemProperties System.getProperties()
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+}
+
+// No detener toda la ejecución si un test falla
+gradle.startParameter.continueOnFailure = true
+
+// Generar reporte Serenity al terminar los tests
+test.finalizedBy(aggregate)
+
+// Tareas por defecto si ejecutas solo "gradlew"
+defaultTasks 'clean', 'test', 'aggregate'
